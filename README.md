@@ -4,7 +4,7 @@
 
 [StartHQ](https://starthq.com) provides federated search across all your web apps via a [browser extension](https://starthq.com/ext). This README describes how to implement your own search provider and requires that you have a StartHQ account with developer features enabled. To get this, simply sign up via the link above and then drop us a line requesting access via the "Feedback" item in the dropdown menu in the upper right.
 
-
+A screencast of the search functionality is available [here](https://www.dropbox.com/s/04rrwxuuvkzpyrp/starthq.mp4) - search demo is towards the end.
 
 ## Provider Types
 
@@ -20,7 +20,7 @@ The translate string for an HTML provider should be "parseHTML(response)".
 
 For each of `name`, `description` and `link`, find the CSS selector needed to retrieve the elements you need. The easiest way to do this is using the bookmarklet from http://selectorgadget.com/ - start by clicking the elements you want included, then the ones you want excluded, then included and so on until only the elements you want are included.
 
-Finally, use the [AngularJS expression language](http://docs.angularjs.org/guide/expression) (which is a subset of JavaScript) and the DOM API (https://developer.mozilla.org/en-US/docs/Web/API/Node) to retrieve the data you need, e.g.: "element.textContent" to get the textual contents of the element or element.getAttribute("href") to get the value of the href attribute.
+Finally, use the [AngularJS expression language](http://docs.angularjs.org/guide/expression) (which is a subset of JavaScript) and the [DOM API](https://developer.mozilla.org/en-US/docs/Web/API/Node) to retrieve the data you need, e.g.: "element.textContent" to get the textual contents of the element or element.getAttribute("href") to get the value of the href attribute.
 
 To test that this works correctly, fire up e.g. Chrome Developer tools (press F12 in Chrome), open the Console tab and type in the following: var element = document.querySelectorAll‎('.repolist-name a')[0] where '.repolist-name a' is the selector string above; then on the next line type in e.g. element.getAttribute("href") i.e. the Angular expression from above.
 
@@ -30,3 +30,10 @@ Check out [search.js](https://github.com/starthq/search/blob/master/search.js) f
 ### JSON provider
 
 This is work in progress.
+
+
+## Terms
+
+By contributing to StartHQ as a developer you agree to our [terms](https://starthq.com/terms).
+
+Any questions? Drop us a line at doreply@starthq.com or via the "Feedback" form in the navbar dropdown.
