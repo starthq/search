@@ -34,9 +34,9 @@ This is work in progress.
 
 ## Terms & Feedback
 
-By contributing to StartHQ as a developer you agree to our [terms](https://starthq.com/terms).
+By contributing to StartHQ as a developer you agree to our [terms](https://starthq.com/terms). TLDR; don't break things and if you make something cool, let us know.
 
-Got questions or improvement? Drop us a line at doreply@starthq.com or via the "Feedback" form in the navbar dropdown or send a pull request.
+Got questions or improvement suggestions? Drop us a line at doreply@starthq.com or via the "Feedback" form in the navbar dropdown or send a pull request.
 
 ## License
 
