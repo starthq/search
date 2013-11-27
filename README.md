@@ -1,4 +1,4 @@
-# StartHQ Search API
+# StartHQ Provider API
 
 ## Overview
 
@@ -6,11 +6,59 @@
 
 A screencast of the search functionality is available [here](https://www.dropbox.com/s/04rrwxuuvkzpyrp/starthq.mp4) - search demo is towards the end.
 
-## Provider Types
+You can also [watch a video](https://www.youtube.com/watch?v=WFWxjSOQMVI) of a short talk introducing the API.
 
-### HTML Provider
+## Quick Start
 
-Find the page with the app's search results, this needs to be an HTML page generated on the server, not a single page app where the DOM is built up using JS on the client; quick way to determine if the page is generated on the server is to "View Source" and search for the search term - e.g. https://mail.google.com/mail/h/aez8fwf893g7/?s=q&q=starthq
+There is one provider per app in the StartHQ [app directory](https://starthq.com/apps/). Below is an example of the provider definition for GitHub:
+
+
+```
+{
+  search: [
+    {
+      query:'https://github.com/search?q={{term}}',
+      translate:'parseHTML(response)',
+      name:{
+        selector:'.repolist-name a',
+        expression:'element.textContent'
+      },
+      link:{
+        selector:'.repolist-name a',
+        expression:'"https://github.com" + element.getAttribute("href")'
+      },
+      description:{
+        selector:'.description',
+        expression:'element.textContent'
+      }
+    }
+  ]
+}
+```
+
+The key things to note are:
+
+  - The provider definition is an object with the search attribute, which contains an array of objects, each with its own type. Supported type values include `message`, `answer`, `video`, `app` & `link`. This allows you to return more than one set of results of the same type per app.
+  - In addition to `type`, the following attributes are required: `query` determines the URL to query to generate the search results with `{{term}}` being the placeholder for the search query; `name`, `link` and `description` are used to extract the attributes that make up an individual search result.
+  - Each of the result attributes consists of two parts: a CSS selector which is uses to list the elements & and an expression, which is used to to extract a string from each of the elements returned by the selector.
+
+To get started:
+
+  - Sign into StartHQ after having developer access enabled.
+  - In your launcher, click the cog icon in the upper right on the navbar to go into edit mode.
+  - Remove all but one of the tiles from your launcher by clicking X in the corner of each tile.
+  - Click the cog icon on one the remeaining tile to edit it.
+  - Click the Develop tab & paste the code above into it.
+  - Click Save, then click the cog in the navbar to save your configuration.
+  - Type a search query: you should now see results from GitHub appear in the list.
+
+For more info, check out the detailed instructions below.
+
+## HTML Providers
+
+The most common type of provider type is HTML - these providers extract search results directly from the HTML source of search result pages.
+
+To get started with implementing your own provider, find the page with the app's search results, this needs to be an HTML page generated on the server, not a single page app where the DOM is built up using JS on the client; quick way to determine if the page is generated on the server is to "View Source" and search for the search term - e.g. https://mail.google.com/mail/h/aez8fwf893g7/?s=q&q=starthq
 
 If the default version of the web app doesn't generate the HTML on the server, use a User Agent switcher browser extension to access it as if though you were on a mobile device - you should get a mobile web version of the service which will most likely have server generated HTML; note this doesn't always work so you may need to Google for this or try e.g. m.dropbox.com instead of www.dropbox.com.
 
@@ -24,13 +72,7 @@ Finally, use the [AngularJS expression language](http://docs.angularjs.org/guide
 
 To test that this works correctly, fire up e.g. Chrome Developer tools (press F12 in Chrome), open the Console tab and type in the following: var element = document.querySelectorAll‎('.repolist-name a')[0] where '.repolist-name a' is the selector string above; then on the next line type in e.g. element.getAttribute("href") i.e. the Angular expression from above.
 
-Check out [search.js](https://github.com/starthq/search/blob/master/search.js) for more examples.
-
-
-### JSON provider
-
-This is work in progress.
-
+Check out the [examples directory](https://github.com/starthq/search/blob/master/examples) for more examples.
 
 ## Terms & Feedback
 
