@@ -44,15 +44,17 @@ The key things to note are:
 
 To get started:
 
-  - Sign into StartHQ after having developer access enabled.
-  - In your launcher, click the cog icon in the upper right on the navbar to go into edit mode.
-  - Remove all but one of the tiles from your launcher by clicking X in the corner of each tile.
-  - Click the cog icon on one the remeaining tile to edit it.
+  - Sign into StartHQ, in your launcher, click the cog icon in the upper right on the navbar to go into edit mode.
+  - Click the cog icon on the tile of the app you want to add search support for (add the app as you would normally if it's not already in the launcher).
   - Click the Develop tab & paste the code above into it.
   - Click Save, then click the cog in the navbar to save your configuration.
   - Type a search query: you should now see results from GitHub appear in the list.
 
-For more info, check out the detailed instructions below.
+You can use this as a starting point for your own provider. For more info, check out the detailed instructions below.
+
+It's worth noting that the JS looking search provider descriptions actually use [JSON5](https://github.com/aseemk/json5), which is a superset of JSON that is easier to edit. It is *not* JavaScript so things like semicolons (;) and var assignments will result in an error.
+
+You can see some debug output in the developer tools console when running a search. If you don't see anything, there's a syntax error in your search provider definition. 
 
 ## HTML Providers
 
@@ -73,6 +75,35 @@ Finally, use the [AngularJS expression language](http://docs.angularjs.org/guide
 To test that this works correctly, fire up e.g. Chrome Developer tools (press F12 in Chrome), open the Console tab and type in the following: var element = document.querySelectorAll‎('.repolist-name a')[0] where '.repolist-name a' is the selector string above; then on the next line type in e.g. element.getAttribute("href") i.e. the Angular expression from above.
 
 Check out the [examples directory](https://github.com/starthq/search/blob/master/examples) for more examples.
+
+## JSON Providers
+
+JSON providers work much like HTML providers, but instead of extracting the results from HTML, you use [JSONSelect](http://jsonselect.org/) to query the JSON data structure directly. Here is an example:
+
+```
+{
+  search:[
+    {
+      type:'link',
+      query:'https://podio.com/search.json?query={{term}}',
+      translate:'parseJSON(response)',
+      name:{
+        selector:'.data .object .title',
+        expression:'element'
+      },
+      description:{
+        selector:'.data .object :root',
+        expression:'element.app.item_name + " by " + element.created_by.name + " in " + element.space.name'
+      },
+      link:{
+        selector:'.data .object .link',
+        expression:'element'
+      }
+    }
+  ]
+}
+```
+
 
 ## Terms & Feedback
 
