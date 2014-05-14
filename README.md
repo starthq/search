@@ -8,7 +8,15 @@ You may want to [watch a video](https://www.youtube.com/watch?v=WFWxjSOQMVI) of 
 
 ## Quick Start
 
-Below is an example of a provider definition for GitHub:
+To get started:
+
+  - In your launcher, click the cog icon (<i class="fa fa-fw fa-cog"></i>) in the upper right on the navbar to go into edit mode.
+  - Click the cog icon on the tile of the app you want to add search support for; add the app as you would normally if it's not already in the launcher.
+  - Click the Develop tab & paste the code below into it.
+  - Click Save, then click the cog in the navbar to save your configuration.
+  - Type a search query: you should now see results from GitHub appear in the list. If you already had GitHub in your launcher, the results will be duplicated.
+
+You can use this as a starting point for your own provider. For more info, check out the detailed instructions below.
 
 
 ```
@@ -35,22 +43,12 @@ Below is an example of a provider definition for GitHub:
 }
 ```
 
-The key things to note are:
+The key things to note about the provider definition are:
 
   - The provider definition is an object with the search attribute, which contains an array of objects, each with its own type. Supported type values include `message`, `file`, `contact`, `event`, `organization`, `image`, `audio`, `video`, `answer`& `link`. This allows you to return more than one set of results of the same type per app.
   - In addition to `type`, the following attributes are required: `query` determines the URL to query to generate the search results with `{{term}}` being the placeholder for the search query; `name`, `link` and `description` are used to extract the attributes that make up an individual search result.
   - the `translate` attribute depends on the type of data being parsed: use `parseHTML(response)` for HTML and `parseJSON(response)` for JSON
   - Each of the result attributes consists of two parts: a CSS selector which lists the elements & an expression, which is used to extract a string from each of the elements returned by the selector.
-
-To get started:
-
-  - In your launcher, click the cog icon (<i class="fa fa-fw fa-cog"></i>) in the upper right on the navbar to go into edit mode.
-  - Click the cog icon on the tile of the app you want to add search support for; add the app as you would normally if it's not already in the launcher.
-  - Click the Develop tab & paste the code above into it.
-  - Click Save, then click the cog in the navbar to save your configuration.
-  - Type a search query: you should now see results from GitHub appear in the list. If you already had GitHub in your launcher, the results will be duplicated.
-
-You can use this as a starting point for your own provider. For more info, check out the detailed instructions below.
 
 It's worth noting that the JS looking search provider descriptions actually use [JSON5](https://github.com/aseemk/json5), which is a superset of JSON that is easier to edit. It is *not* JavaScript so things like semicolons (;) and var assignments will result in an error.
 
