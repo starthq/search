@@ -1,0 +1,6 @@
+{
+  "name":"providers",
+  "description":"StartHQ providers",
+  "version":"0.0.6",
+  "private":true
+}
