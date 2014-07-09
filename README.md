@@ -45,7 +45,7 @@ You can use this as a starting point for your own provider. For more info, check
 
 The key things to note about the provider definition are:
 
-  - The provider definition is an object with the search attribute, which contains an array of objects, each with its own type. Supported type values include `message`, `file`, `contact`, `event`, `organization`, `image`, `audio`, `video`, `answer`& `link`. This allows you to return more than one set of results of the same type per app.
+  - The provider definition is an object with the search attribute, which contains an array of objects, each with its own type. Supported type values include `webr`, `message`, `file`, `contact`, `event`, `organization`, `post`, `image`, `audio`, `video`, `book`, `answer`, `link` & `app`. This allows you to return more than one set of results of the same type per app.
   - In addition to `type`, the following attributes are required: `query` determines the URL to query to generate the search results with `{{term}}` being the placeholder for the search query; `name`, `link` and `description` are used to extract the attributes that make up an individual search result.
   - the `translate` attribute depends on the type of data being parsed: use `parseHTML(response)` for HTML and `parseJSON(response)` for JSON
   - Each of the result attributes consists of two parts: a CSS selector which lists the elements & an expression, which is used to extract a string from each of the elements returned by the selector.
