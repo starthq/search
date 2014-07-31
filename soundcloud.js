@@ -1,21 +1,21 @@
-{
+ {
   search:[
     {
       type:'link',
-      query:'https://soundcloud.com/search/people?q={{term}}',
-      translate:'parseHTML(response)',
-      name: {
-        selector:'#artistResults .artistsWithInfo .artist strong',
-        expression:'element.textContent'
+      query:'https://api.soundcloud.com/users?client_id=YOUR_CLIENT_ID&q={{term}}',
+      translate:'parseJSON(response)',
+      name:{
+        selector:'.data .object .username',
+        expression:'element'
       },
-      description: {
-        selector:'#artistResults .artistsWithInfo .bio',
-        expression:'element.textContent'
+      description:{
+        selector:'.data .object .description',
+        expression:'element'
       },
-      link: {
-        selector:'#artistResults .artistsWithInfo .artist',
-        expression:'"https://soundcloud.com" + element.getAttribute("href")'
+      link:{
+        selector:'.data .object .avatar-url',
+        expression:'element'
       }
     }
   ]
-}	
+}
