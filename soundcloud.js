@@ -5,15 +5,15 @@
       query:'https://api.soundcloud.com/users?client_id=YOUR_CLIENT_ID&q={{term}}',
       translate:'parseJSON(response)',
       name:{
-        selector:'.data .object .username',
-        expression:'element'
+        selector:'.user :root',
+        expression:'element.username'
       },
       description:{
-        selector:'.data .object .description',
+        selector:'.user .description',
         expression:'element'
       },
       link:{
-        selector:'.data .object .avatar-url',
+        selector:'.user .avatar-url',
         expression:'element'
       }
     }
