@@ -50,7 +50,7 @@ The key things to note about the provider definition are:
   - the `translate` attribute depends on the type of data being parsed: use `parseHTML(response)` for HTML and `parseJSON(response)` for JSON
   - Each of the result attributes consists of two parts: a CSS selector which lists the elements & an expression, which is used to extract a string from each of the elements returned by the selector.
 
-It's worth noting that the JS looking search provider descriptions actually use [JSON5](https://github.com/aseemk/json5), which is a superset of JSON that is easier to edit. It is *not* JavaScript so things like semicolons (;) and var assignments will result in an error. You can use the [JSON5LINT](https://github.com/Omie/json5lint/blob/master/js/json5lint.js) tool to check that you don't have a syntax error.
+It's worth noting that the JS looking search provider descriptions actually use [JSON5](https://github.com/aseemk/json5), which is a superset of JSON that is easier to edit. It is *not* JavaScript so things like semicolons (;) and var assignments will result in an error. You can use the [JSON5LINT](https://github.com/Omie/json5lint/) tool to check that you don't have a syntax error.
 
 You can see some debug output in the developer tools console when running a search. If you don't see anything, there's a syntax error in your search provider definition. 
 
