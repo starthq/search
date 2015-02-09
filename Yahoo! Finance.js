@@ -1,0 +1,20 @@
+{
+  search:[
+    {
+      query:'https://finance.search.yahoo.com/search?p={{term}}',
+      translate:'parseHTML(response)',
+      name:{
+        selector:'.yschttl.spt',
+        expression:'$(element).text()'
+      },
+      link:{
+        selector:'li .spt',
+        expression:'$(element).attr("href")'
+      },
+      description:{
+        selector:'.abstr',
+        expression:'$(element).text()'
+      }
+    },
+  ]
+}
